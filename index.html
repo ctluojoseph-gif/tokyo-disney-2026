@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>東京小公主冒險手冊</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<style>
+/* 日系繪本風：和紙白底、墨灰粗線框、大圓角、平塗四色。手機優先單欄，頂端固定膠囊選單。 */
+:root{
+  color-scheme:light;
+  --paper:#FFFCF6; --card:#FFFFFF; --ink:#3E3A39; --ink-soft:#6E6866;
+  --coral:#F2A497; --yama:#F6D27A; --mizu:#A8D3E6; --take:#B9DAA5;
+  --coral-lt:#FCE6E1; --yama-lt:#FDF2D3; --mizu-lt:#E3F1F7; --take-lt:#E9F3E3;
+  --line:3px solid var(--ink);
+  --r-lg:26px; --r-md:18px; --r-pill:999px;
+  --font:'Huninn','PingFang TC','Microsoft JhengHei','Noto Sans TC',sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.75}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:var(--coral)}
+b,strong{font-weight:normal;box-shadow:inset 0 -.45em 0 var(--yama);padding:0 2px}
+h1,h2,h3{font-weight:normal;margin:0;text-wrap:balance}
+button,input{font-family:inherit;color:var(--ink)}
+:focus-visible{outline:3px dashed var(--coral);outline-offset:3px}
+[hidden]{display:none!important}
+small{font-size:13px;color:var(--ink-soft)}
+
+/* ---------- top nav ---------- */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--paper);border-bottom:var(--line)}
+.topnav-inner{max-width:760px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topnav-inner::-webkit-scrollbar{display:none}
+.tab{flex:none;border:var(--line);border-radius:var(--r-pill);background:var(--card);padding:4px 14px;font-size:15px;cursor:pointer;line-height:1.6;transition:transform .15s}
+.tab:hover{transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--yama)}
+
+/* ---------- layout ---------- */
+.wrap{max-width:760px;margin:0 auto;padding-block:18px 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.panel{display:flex;flex-direction:column;gap:16px}
+.panel[hidden]{display:none}
+.sec-title{display:flex;align-items:center;gap:10px;font-size:20px;margin-top:10px}
+.sec-title::after{content:"";flex:1;height:3px;background:var(--ink);border-radius:3px;opacity:.15}
+.card{background:var(--card);border:var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
+.card h3{font-size:18px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.card p{margin:4px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+.soft-coral{background:var(--coral-lt)} .soft-yama{background:var(--yama-lt)} .soft-mizu{background:var(--mizu-lt)} .soft-take{background:var(--take-lt)}
+.note{border:var(--line);border-radius:var(--r-md);padding:12px 14px;font-size:15px}
+.note.warn{background:var(--yama-lt)} .note.alert{background:var(--coral-lt)} .note.ok{background:var(--take-lt)} .note.info{background:var(--mizu-lt)}
+ul.dots{margin:4px 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+ol.num{list-style:none;counter-reset:n;padding:0;margin:6px 0;display:flex;flex-direction:column;gap:8px}
+ol.num li{counter-increment:n;position:relative;padding-left:40px}
+ol.num li::before{content:counter(n);position:absolute;left:0;top:0;width:28px;height:28px;border:var(--line);border-radius:50%;background:var(--mizu);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pill-link{display:inline-flex;align-items:center;gap:4px;border:2px solid var(--ink);border-radius:var(--r-pill);padding:2px 12px;font-size:14px;text-decoration:none;background:var(--card)}
+.pill-link:hover{background:var(--yama-lt)}
+.pill-link.main{background:var(--yama)}
+.src{font-size:13px;color:var(--ink-soft)}
+.tbl-wrap{overflow-x:auto;border:var(--line);border-radius:var(--r-md);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:2px dashed #E8E2DA}
+tr:last-child td{border-bottom:none}
+th{background:var(--mizu-lt);font-weight:normal;white-space:nowrap}
+td:first-child{white-space:nowrap}
+tr.pick td{background:var(--yama-lt)}
+
+/* ---------- hero ---------- */
+.hero{border:var(--line);border-radius:var(--r-lg);background:var(--mizu-lt);overflow:hidden;box-shadow:5px 5px 0 var(--ink)}
+.hero svg{display:block;width:100%;height:auto}
+.hero-body{padding:14px 18px 18px;background:var(--card);border-top:var(--line);text-align:center}
+.hero-body .eyebrow{font-size:13px;letter-spacing:.2em;color:var(--ink-soft)}
+.hero-body h1{font-size:28px;line-height:1.35;margin:4px 0}
+.hero-body .sub{font-size:15px;color:var(--ink-soft)}
+.countdown{display:flex;justify-content:center;gap:10px;margin-top:12px}
+.cd{border:var(--line);border-radius:var(--r-md);min-width:68px;padding:4px 8px;background:var(--yama)}
+.cd:nth-child(2){background:var(--coral)} .cd:nth-child(3){background:var(--take)}
+.cd .n{font-size:30px;line-height:1.2;font-variant-numeric:tabular-nums}
+.cd .u{font-size:13px}
+.cd-label{font-size:13px;color:var(--ink-soft);margin-top:6px}
+
+/* flights */
+.flight{display:flex;align-items:center;gap:10px;margin:8px 0}
+.flight .ap{text-align:center;min-width:70px}
+.flight .ap .t{font-size:26px;line-height:1.1}
+.flight .ap .c{font-size:13px;color:var(--ink-soft)}
+.flight .path{flex:1;height:0;border-top:3px dashed var(--ink);position:relative}
+.flight .path svg{position:absolute;left:50%;top:-13px;transform:translateX(-50%);width:28px;height:28px;background:var(--card)}
+
+/* overview cards */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.ov-card{border:var(--line);border-radius:var(--r-md);padding:10px 12px;background:var(--card);cursor:pointer;text-align:left;font:inherit;display:flex;flex-direction:column;gap:2px;transition:transform .15s}
+.ov-card:hover{transform:translateY(-3px) rotate(-.5deg)}
+.ov-card .d{font-size:13px;color:var(--ink-soft)}
+.ov-card .t{font-size:16px;line-height:1.4}
+.ov-card svg{width:56px;height:40px}
+
+/* ---------- itinerary ---------- */
+.day-switch{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:20;background:var(--paper);padding:6px 0}
+.day-chip{border:var(--line);border-radius:var(--r-md);background:var(--card);padding:4px 0 6px;cursor:pointer;line-height:1.25;transition:transform .15s}
+.day-chip .dn{display:block;font-size:12px;color:var(--ink-soft)}
+.day-chip .dd{display:block;font-size:18px}
+.day-chip[aria-selected="true"]{transform:translateY(-3px);box-shadow:0 4px 0 var(--ink)}
+.day-head{border:var(--line);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:14px;align-items:center;box-shadow:5px 5px 0 var(--ink)}
+.day-head svg{width:110px;height:76px;flex:none}
+.day-head .num{font-size:13px;color:var(--ink)}
+.day-head h2{font-size:22px;line-height:1.35}
+.day-head .meta{font-size:14px;margin-top:4px}
+.bg-coral{background:var(--coral)} .bg-yama{background:var(--yama)} .bg-mizu{background:var(--mizu)} .bg-take{background:var(--take)}
+.legend{display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
+.boing{animation:boing .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes boing{0%{transform:translateY(14px) scale(.96);opacity:.3}55%{transform:translateY(-6px) scale(1.01);opacity:1}100%{transform:none}}
+
+.tl{position:relative;display:flex;flex-direction:column;gap:12px;padding-left:30px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;border-left:3px dashed var(--ink)}
+.ti{position:relative}
+.ti::before{content:"";position:absolute;left:-27px;top:16px;width:16px;height:16px;border:var(--line);border-radius:50%;background:var(--card)}
+.ti.must::before{background:var(--coral)}
+.ti .box{background:var(--card);border:var(--line);border-radius:var(--r-md);padding:10px 14px}
+.ti.must .box{background:var(--coral-lt)}
+.ti .top{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.ti .time{font-size:15px;border:2px solid var(--ink);border-radius:var(--r-pill);padding:0 10px;background:var(--paper)}
+.ti .name{font-size:17px;line-height:1.45;margin-top:4px}
+.ti .desc{font-size:14.5px;color:var(--ink-soft);margin-top:2px}
+.ti .desc b{color:var(--ink)}
+.ti .warn,.ti .tip{font-size:14px;border-radius:12px;padding:6px 10px;margin-top:6px}
+.ti .warn{background:var(--yama-lt)} .ti .tip{background:var(--mizu-lt)}
+.tag{display:inline-flex;align-items:center;gap:3px;border:2px solid var(--ink);border-radius:var(--r-pill);padding:0 9px;font-size:13px;line-height:1.7;white-space:nowrap}
+.t-plane{background:var(--mizu)} .t-bus{background:var(--yama)} .t-train{background:var(--take)} .t-mono{background:var(--coral)} .t-walk{background:var(--card)} .t-taxi{background:var(--yama-lt)} .t-boat{background:var(--mizu-lt)}
+.must-badge{display:inline-flex;align-items:center;border:2px solid var(--ink);border-radius:var(--r-pill);padding:0 9px;font-size:13px;background:var(--coral);line-height:1.7}
+.stay-line{border:var(--line);border-radius:var(--r-md);padding:10px 14px;background:var(--take-lt);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* pager */
+.pager{display:flex;gap:10px;margin-top:6px}
+.pager button{flex:1;border:var(--line);border-radius:var(--r-md);background:var(--card);padding:10px;font-size:15px;cursor:pointer}
+.pager button:hover{background:var(--yama-lt)}
+.pager button:disabled{opacity:.35;cursor:default}
+
+/* checklist */
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.check li{display:flex;gap:12px;align-items:flex-start;border:var(--line);border-radius:var(--r-md);padding:10px 14px;background:var(--card);cursor:pointer;user-select:none}
+.check .box{flex:none;width:26px;height:26px;border:var(--line);border-radius:9px;margin-top:1px;display:flex;align-items:center;justify-content:center;background:var(--card)}
+.check .box svg{width:16px;height:16px;opacity:0}
+.check li.done{background:var(--take-lt)}
+.check li.done .box{background:var(--take)}
+.check li.done .box svg{opacity:1}
+.check li.done .txt{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--ink-soft)}
+.check .txt small{display:block}
+.chip{display:inline-block;border:2px solid var(--ink);border-radius:var(--r-pill);padding:0 8px;font-size:12px;margin-left:4px;vertical-align:2px;line-height:1.6}
+.chip.urgent{background:var(--coral)} .chip.soon{background:var(--yama)} .chip.new{background:var(--mizu)}
+.progress{height:16px;border:var(--line);border-radius:var(--r-pill);background:var(--card);overflow:hidden}
+.progress span{display:block;height:100%;background:var(--take);width:0;transition:width .3s}
+
+/* lock */
+.lockbox{border:3px dashed var(--ink);border-radius:var(--r-lg);padding:16px;background:var(--yama-lt);display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center}
+.lockbox svg{width:54px;height:54px}
+.lockbox form{display:flex;gap:8px;width:100%;max-width:340px}
+.lockbox input{flex:1;min-width:0;border:var(--line);border-radius:var(--r-pill);padding:6px 14px;font-size:16px;background:var(--card)}
+.lockbox button{border:var(--line);border-radius:var(--r-pill);background:var(--coral);padding:6px 16px;font-size:16px;cursor:pointer}
+.lockbox .err{color:#A23B2A;font-size:14px;min-height:1.4em}
+.lock-btn{border:2px solid var(--ink);border-radius:var(--r-pill);background:var(--card);padding:2px 12px;font-size:13px;cursor:pointer;align-self:flex-end}
+
+/* docs */
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:520px){.thumbs{grid-template-columns:1fr 1fr}}
+.thumb{display:block;border:var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--card);text-decoration:none}
+.thumb img{display:block;width:100%;height:110px;object-fit:cover;border-bottom:var(--line)}
+.thumb span{display:block;padding:6px 10px;font-size:14px}
+.doc{display:flex;align-items:center;gap:12px;border:var(--line);border-radius:var(--r-md);padding:10px 14px;background:var(--card);text-decoration:none}
+.doc:hover{background:var(--yama-lt)}
+.doc .di{font-size:22px;flex:none}
+.doc .dt{flex:1;min-width:0}
+.doc .dt small{display:block}
+
+/* motion */
+.float{animation:floaty 4.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.float2{animation:floaty 5.5s ease-in-out infinite .8s;transform-box:fill-box;transform-origin:center}
+.drift{animation:drift 18s ease-in-out infinite alternate;transform-box:fill-box}
+.bob{animation:bob 3.2s ease-in-out infinite;transform-box:fill-box}
+.spin{animation:spin 24s linear infinite;transform-box:fill-box;transform-origin:center}
+.wiggle{animation:wiggle 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes drift{from{transform:translateX(-10px)}to{transform:translateX(14px)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+.foot{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:20px}
+</style>
+</head>
+<body>
+<!-- SVG symbol library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-plane" viewBox="0 0 48 48"><path d="M6 27 L42 14 Q46 13 45 17 L40 20 L22 33 L16 32 L22 26 L12 29 L9 33 L6 32 Z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 54 54"><rect x="10" y="24" width="34" height="24" rx="7" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/><path d="M17 24 V17 a10 10 0 0 1 20 0 V24" fill="none" stroke="#3E3A39" stroke-width="3"/><circle cx="27" cy="35" r="3.5" fill="#3E3A39"/><path d="M27 37 V42" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<nav class="topnav" aria-label="主選單">
+  <div class="topnav-inner" role="tablist">
+    <button class="tab" role="tab" data-tab="home" aria-selected="true">🏠 首頁</button>
+    <button class="tab" role="tab" data-tab="plan">🗓️ 行程</button>
+    <button class="tab" role="tab" data-tab="disney">🎠 迪士尼</button>
+    <button class="tab" role="tab" data-tab="todo">✅ 待辦</button>
+    <button class="tab" role="tab" data-tab="pay">🍉 付款</button>
+    <button class="tab" role="tab" data-tab="stay">🛏️ 住宿</button>
+    <button class="tab" role="tab" data-tab="info">📎 資料</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= 首頁 ================= -->
+<section class="panel" id="p-home">
+  <div class="hero">
+    <svg viewBox="0 0 360 210" role="img" aria-label="東京的插圖：富士山、紅色鐵塔、海浪、飛機和電車">
+      <rect width="360" height="210" fill="#E3F1F7"/>
+      <!-- sun -->
+      <g class="spin" style="transform-origin:300px 46px">
+        <g stroke="#3E3A39" stroke-width="3" stroke-linecap="round">
+          <path d="M300 14 V22"/><path d="M300 70 V78"/><path d="M268 46 H276"/><path d="M324 46 H332"/>
+          <path d="M277 23 L283 29"/><path d="M317 63 L323 69"/><path d="M323 23 L317 29"/><path d="M283 63 L277 69"/>
+        </g>
+      </g>
+      <circle cx="300" cy="46" r="17" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+      <!-- clouds -->
+      <g class="drift"><path d="M40 52 a12 12 0 0 1 22 -6 a14 14 0 0 1 26 4 a10 10 0 0 1 2 20 H44 a10 10 0 0 1 -4 -18z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/></g>
+      <g class="drift" style="animation-delay:-6s"><path d="M168 30 a9 9 0 0 1 17 -4 a11 11 0 0 1 20 4 a8 8 0 0 1 1 15 H171 a8 8 0 0 1 -3 -15z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/></g>
+      <!-- plane -->
+      <g class="float"><use href="#i-plane" x="96" y="14" width="44" height="44"/><path d="M60 46 h26 M68 54 h14" stroke="#3E3A39" stroke-width="3" stroke-linecap="round" opacity=".35"/></g>
+      <!-- fuji -->
+      <path d="M8 150 L82 74 Q90 66 98 74 L172 150 Z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M66 91 L82 74 Q90 66 98 74 L114 91 L104 98 L96 90 L88 99 L78 90 Z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <!-- tower -->
+      <g class="wiggle" style="animation-duration:6s">
+        <path d="M236 150 L254 60 L264 60 L282 150" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M236 150 L254 60 H264 L282 150 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M244 112 H274 M248 92 H270 M251 76 H267" stroke="#3E3A39" stroke-width="3"/>
+        <rect x="240" y="104" width="38" height="9" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="3"/>
+        <path d="M259 60 V40" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/>
+        <path d="M246 150 L259 122 L272 150" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      </g>
+      <!-- houses -->
+      <path d="M170 150 V126 L184 114 L198 126 V150 Z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M198 150 V132 L210 122 L222 132 V150 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="179" y="134" width="9" height="9" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+      <rect x="206" y="138" width="8" height="12" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+      <path d="M300 150 V118 L318 104 L336 118 V150 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M312 150 V136 a6 6 0 0 1 12 0 V150" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+      <!-- train -->
+      <path d="M0 158 H360" stroke="#3E3A39" stroke-width="3"/>
+      <g class="bob">
+        <rect x="20" y="128" width="72" height="26" rx="12" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+        <rect x="96" y="128" width="64" height="26" rx="10" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+        <rect x="30" y="134" width="14" height="10" rx="3" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+        <rect x="50" y="134" width="14" height="10" rx="3" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+        <rect x="106" y="134" width="14" height="10" rx="3" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+        <rect x="126" y="134" width="14" height="10" rx="3" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+        <path d="M24 148 H88 M100 148 H156" stroke="#3E3A39" stroke-width="2" opacity=".5"/>
+      </g>
+      <!-- sea -->
+      <path d="M0 162 H360 V210 H0 Z" fill="#A8D3E6"/>
+      <g class="drift" style="animation-duration:9s">
+        <path d="M-20 176 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/>
+        <path d="M0 196 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path d="M0 162 H360" stroke="#3E3A39" stroke-width="3"/>
+      <!-- boat -->
+      <g class="bob" style="animation-duration:2.6s"><path d="M280 180 H336 L326 194 H290 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M306 180 V160 L322 176 Z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/></g>
+    </svg>
+    <div class="hero-body">
+      <div class="eyebrow">FAMILY TRIP・TOKYO</div>
+      <h1>東京小公主冒險手冊</h1>
+      <div class="sub">2026/11/3（二）– 11/7（六）・5 天 4 夜・大人 2 位＋5 歲小公主</div>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="cd"><div class="n" id="cd-d">--</div><div class="u">天</div></div>
+        <div class="cd"><div class="n" id="cd-h">--</div><div class="u">時</div></div>
+        <div class="cd"><div class="n" id="cd-m">--</div><div class="u">分</div></div>
+      </div>
+      <div class="cd-label" id="cd-label">距離出發（台灣時間 11/3 09:30 起飛）</div>
+    </div>
+  </div>
+
+  <h2 class="sec-title">✈️ 航班</h2>
+  <div data-lock="flights"></div>
+
+  <h2 class="sec-title">🗓️ 五天一覽</h2>
+  <div class="ov-grid" id="ov-grid"></div>
+
+  <div class="note alert">📌 還有沒完成的待辦？<a href="#todo" data-go="todo">打開待辦清單</a>看看，最急的是<b>神仙教母預約</b>和<b>手機漫遊申請</b>。</div>
+  <div class="note warn">時間、票價、營業時間是 2026/10/25 查到的官方或公開資訊，出發前一週再用官方 App 確認一次。</div>
+</section>
+
+<!-- ================= 行程 ================= -->
+<section class="panel" id="p-plan" hidden>
+  <div class="day-switch" role="tablist" aria-label="切換日期" id="day-switch"></div>
+  <div id="day-view"></div>
+</section>
+
+<!-- ================= 迪士尼 ================= -->
+<section class="panel" id="p-disney" hidden>
+  <div class="day-head bg-coral">
+    <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#ill-castle"/></svg>
+    <div><div class="num">11/4 海洋日專用</div><h2>迪士尼攻略</h2><div class="meta">變身・門票・DPA・餐廳・地圖</div></div>
+  </div>
+
+  <h2 class="sec-title">👑 神仙教母美容院</h2>
+  <div class="card">
+    <p>在<b>東京迪士尼樂園大飯店 1F</b>，不在海洋。不用門票、不用住該飯店就能使用。</p>
+    <div class="tbl-wrap" style="margin-top:8px"><table>
+      <thead><tr><th>方案</th><th>價格</th><th>時間</th><th>內容</th></tr></thead>
+      <tbody>
+        <tr class="pick"><td>城堡方案 ★</td><td>¥37,950</td><td>約 75 分</td><td>禮服＋鞋、髮型、化妝、美甲、公主照片</td></tr>
+        <tr><td>馬車方案</td><td>¥29,150</td><td>約 45 分</td><td>同上但不含照片</td></tr>
+        <tr><td>皇冠方案</td><td>¥9,350</td><td>約 30 分</td><td>髮型、化妝、美甲（自備禮服）</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note warn" style="margin-top:10px">使用日 1 個月前 09:00 開放官網預約，不接受電話。需付 ¥5,000 申請金（抵費用），前一天 23:59 前取消免費。高級禮服另加價。以官網為準。</div>
+    <div class="links"><a class="pill-link main" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/happy/bbb/">官方預約頁 ↗</a></div>
+  </div>
+
+  <h2 class="sec-title">🎟️ 門票</h2>
+  <div class="card">
+    <p>11/4（三）海洋 <b>09:00–21:00</b>，1 日護照 <b>大人 ¥9,900</b>。兒童（4–11 歲）約 ¥5,300–5,600，以購票頁為準。園區門口不賣票，要事先在官網、App 或授權通路買。</p>
+    <div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tds/monthly/calendar/202611/">官方 11 月價格日曆 ↗</a></div>
+  </div>
+
+  <h2 class="sec-title">⚡ DPA 付費快速通關</h2>
+  <div class="note alert">2026/9/1 起免費的 Priority Pass 取消了，快速通關只剩付費 DPA。</div>
+  <div class="card">
+    <h3>📜 官方規則</h3>
+    <ul class="dots">
+      <li>只能用官方 <b>Tokyo Disney Resort App</b> 買（要 MyDisney 帳號）。限信用卡、簽帳卡、預付卡，不能用 PayPay。</li>
+      <li><b>每個人的門票都要當天已刷入園</b>才選得到。已入園的人可以幫同群組、也已入園的人一起買。</li>
+      <li>一張門票每次只能買 1 人份。全家<b>一次買齊</b>，時段和表演座位才會在一起。</li>
+      <li>按下 OK 就扣款，私人因素不能取消或退款。</li>
+      <li>下一張設施 DPA：購買後 60 分鐘，或手上那張的時段開始，以較早者為準。</li>
+      <li><b>設施和表演分開計算</b>，買完冰雪奇緣可以馬上買夜間秀。</li>
+      <li>3 歲以下免費。5 歲的小公主要買。</li>
+    </ul>
+  </div>
+  <div class="card soft-mizu">
+    <h3>📱 購買步驟</h3>
+    <ol class="num">
+      <li>出發前把 3 張門票掃進 App，建同一個群組</li>
+      <li>全家一起刷票入園</li>
+      <li>App →「My Plan」→「Disney Premier Access」→ 勾 3 張票</li>
+      <li>選設施和時段 → 刷卡 → 3D 驗證（要能收簡訊）</li>
+      <li>時段開始前 5 分鐘出現 QR Code，走 DPA 專用入口</li>
+    </ol>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>海洋 DPA</th><th>每人</th><th>平日大約售完</th></tr></thead>
+    <tbody>
+      <tr class="pick"><td>❄️ 安娜與艾莎的冰雪之旅</td><td>¥2,500</td><td>9:40 前後</td></tr>
+      <tr><td>🎬 夢想起飛（表演）</td><td>¥2,500</td><td>10:00 前後</td></tr>
+      <tr class="pick"><td>🌌 Believe! Sea of Dreams（夜間秀）</td><td>¥2,500</td><td>11:00 前後</td></tr>
+      <tr><td>🦅 翱翔：夢幻奇航</td><td>¥2,500</td><td>14:00 前後</td></tr>
+      <tr><td>🎯 玩具總動員瘋狂遊戲屋</td><td>¥2,000</td><td>下午</td></tr>
+      <tr><td>🎈 樂佩公主天燈嘉年華</td><td>¥2,000</td><td>19:40 前後</td></tr>
+      <tr><td>🧚 彼得潘的夢幻島冒險</td><td>¥2,000</td><td>19:40 前後</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">售完時間是 tdr-waits.com 近 30 日平均（2026/10/25）和部落格觀察，不是官方保證，雨天和假日會更早。</p>
+
+  <div class="card soft-yama">
+    <h3>⏰ 一早入園，冰雪奇緣要搶幾點以前？</h3>
+    <p><b>進閘門就買，最好 9:30 前付款完成，最晚別過 9:40。</b>走到冰雪王國要 20 分鐘，先買再走。</p>
+    <ul class="dots">
+      <li>照神仙教母行程：選 <b>13:00 以後</b>的時段。</li>
+      <li>整天待在海洋：選最早的時段，時段一開始就能買下一張。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>🌌 夜間秀 DPA 秘訣</h3>
+    <ul class="dots">
+      <li>跟冰雪奇緣<b>同時搶</b>，不用等 60 分鐘。</li>
+      <li>平日大約 11:00 賣完，中午才入園通常買不到。</li>
+      <li>座位由系統分配，買完在 App 看座位號碼。觀賞區不能撐傘。</li>
+      <li>天候取消會退款，改時間或內容不退。</li>
+      <li>沒買到：傍晚偶爾追加釋出（有人遇過 18:01 釋出 19:00 後時段），持續刷新 App。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec-title">🧭 11/4 兩種玩法</h2>
+  <div class="grid2">
+    <div class="card soft-take">
+      <h3>方案 A：一早先搶 DPA</h3>
+      <ol class="num">
+        <li>08:30 接駁車到海洋巴士總站</li>
+        <li>09:00 全家入園，立刻買冰雪奇緣（13:00 後）＋夜間秀</li>
+        <li>09:20 出園，告訴出口人員要再入園</li>
+        <li>單軌電車 海洋站→樂園站（約 7 分）</li>
+        <li>10:30 樂園大飯店變身</li>
+        <li>12:30 回海洋，出示門票再入園</li>
+      </ol>
+      <p>✅ 冰雪奇緣和夜間秀有保障<br>⚠️ 早上比較趕</p>
+    </div>
+    <div class="card">
+      <h3>方案 B：原本的行程</h3>
+      <ol class="num">
+        <li>09:00 接駁車到樂園巴士總站</li>
+        <li>10:30 變身</li>
+        <li>12:20 進海洋，DPA 大概賣完了</li>
+        <li>冰雪奇緣 17:00 後排隊（約 60–80 分）或等傍晚追加</li>
+      </ol>
+      <p>✅ 早上輕鬆<br>⚠️ 穿禮服排隊比較累</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title">🍽️ 適合穿禮服的餐廳</h2>
+  <div class="grid2">
+    <div class="card"><h3>艾倫戴爾皇家宴會廳</h3><p><small>冰雪王國・城堡裡用餐</small></p><p>最有公主氣氛。Priority Seating 1 個月前開放，或當天 App 試試。</p></div>
+    <div class="card"><h3>賽巴斯丁加力騷廚房</h3><p><small>美人魚礁湖・室內快餐</small></p><p>全室內、座位多，中午入園後最方便。</p></div>
+    <div class="card"><h3>卡納雷托餐館</h3><p><small>地中海港灣・義大利菜</small></p><p>運河旁，氣氛優雅，需要 Priority Seating。</p></div>
+    <div class="card"><h3>猶加敦基地營燒烤</h3><p><small>失落河三角洲・快餐</small></p><p>座位超多、出餐快。</p></div>
+  </div>
+
+  <h2 class="sec-title">🗺️ 園區地圖</h2>
+  <div class="thumbs">
+    <a class="thumb" href="files/tds_map_tc.pdf" target="_blank" rel="noopener"><img src="files/tds_thumb.jpg" alt="東京迪士尼海洋地圖縮圖" loading="lazy"><span>海洋地圖 PDF</span></a>
+    <a class="thumb" href="files/tdl_map_tc.pdf" target="_blank" rel="noopener"><img src="files/tdl_thumb.jpg" alt="東京迪士尼樂園地圖縮圖" loading="lazy"><span>樂園地圖 PDF</span></a>
+  </div>
+  <div class="links"><a class="pill-link main" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tc/tdr/guide/app_service/disneypremieraccess.html">官方 DPA 說明 ↗</a><a class="pill-link" target="_blank" rel="noopener" href="https://www.tdr-waits.com/dpa">DPA 售完統計 ↗</a><a class="pill-link" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tds/show/">海洋表演時間 ↗</a></div>
+</section>
+
+<!-- ================= 待辦 ================= -->
+<section class="panel" id="p-todo" hidden>
+  <h2 class="sec-title">✅ 出發前待辦</h2>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <p class="src" id="progress-text" style="margin-top:-8px">完成 0 / 0（打勾只存在這支手機）</p>
+  <ul class="check" id="checklist">
+    <li data-id="bbb"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">預約神仙教母美容院（11/4 10:30・樂園大飯店）<span class="chip urgent">盡快</span><small>名額 10/4 已開放，上官網查空位或刷取消名額。</small></span></li>
+    <li data-id="roam"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">申辦日本漫遊（兩支台哥大）<span class="chip new">新增</span><span class="chip soon">11/30 前</span><small>建議：同遊共享包「經濟包」12GB/7 日 $799，兩支一起用。<a href="#roam-card" data-scroll="roam-card">看比價 ↓</a></small></span></li>
+    <li data-id="car-go"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">預約機場接送：11/3 去程（家→桃園 T2）<span class="chip new">新增</span><small>約 05:45–06:00 上車，07:00 前到機場。加訂兒童增高墊。<a href="#car-card" data-scroll="car-card">怎麼訂 ↓</a></small></span></li>
+    <li data-id="car-back"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">預約機場接送：11/7 回程（桃園 T2→家）<span class="chip new">新增</span><small>22:45 落地，上車約 23:30–23:45，會有夜間加價。訂車時附航班號碼。</small></span></li>
+    <li data-id="ticket"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">確認已買 11/4 海洋 1 日護照 ×2 大 1 小<small>買好掃進官方 App 建群組。</small></span></li>
+    <li data-id="app"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">下載 Tokyo Disney Resort App、註冊 MyDisney 帳號</span></li>
+    <li data-id="dpaplan"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">決定 11/4 用方案 A 還是 B<small><a href="#disney" data-go="disney">看比較 →</a></small></span></li>
+    <li data-id="card"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">準備 2–3 張不同銀行的信用卡（買 DPA 用）<small>3D 驗證簡訊要能在日本收到，所以漫遊要用原號。</small></span></li>
+    <li data-id="ic"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">大人 iPhone 錢包各加 1 張 Suica<small>用 JCB 或 Mastercard 加值。<a href="#pay" data-go="pay">教學 →</a></small></span></li>
+    <li data-id="vjw"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">填 Visit Japan Web（入境＋海關 QR Code）</span></li>
+    <li data-id="rest"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">（選擇）預約海洋餐廳 Priority Seating</span></li>
+    <li data-id="cash"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">換日圓現金約 ¥30,000、行動電源 ×2</span></li>
+    <li data-id="shoes"><span class="box"><svg><use href="#i-check"/></svg></span><span class="txt">小公主：好走的運動鞋、薄外套、大圍兜、推車</span></li>
+  </ul>
+
+  <h2 class="sec-title" id="roam-card">📶 手機漫遊比價（台灣大哥大）</h2>
+  <div class="note ok">🏆 <b>推薦：同遊共享包「經濟包」12GB／7 日 $799</b>。兩支原號一起用、不用開熱點，在日本也收得到信用卡簡訊。重度用網或怕不夠，就改成兩支都辦「計日型 $129」，共 $1,290。</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>方案</th><th>內容</th><th>全家 5 天</th><th>評語</th></tr></thead>
+    <tbody>
+      <tr class="pick"><td>同遊共享包・經濟包</td><td>12GB／7 日，最多 4 個門號共用，含通話分鐘</td><td><b>$799</b></td><td>⭐ 最划算，原號收簡訊</td></tr>
+      <tr><td>計日型 $129 ×2 支</td><td>吃到飽，官網限定，促銷到 11/30，最少 4 日</td><td>$1,290</td><td>最省心，用量不用算</td></tr>
+      <tr><td>計日型 $129 ×1＋熱點</td><td>另一支連熱點</td><td>$645</td><td>最便宜，但官方不建議開熱點、可能限速；分開走就斷線</td></tr>
+      <tr><td>計量型 12GB ×1＋熱點</td><td>30 日，官網限定到 11/30</td><td>$899</td><td>不如經濟包</td></tr>
+      <tr><td>安心+ 計日型 ×2</td><td>$169／日，通話半價、海外醫療諮詢</td><td>$1,690</td><td>想多一層保障再選</td></tr>
+      <tr><td>預付卡漫遊通 5 日 ×2</td><td>落地即用 $398／張，新號碼</td><td>$796</td><td>要跑門市辦新號，原號簡訊可能收不到</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card">
+    <h3>📝 申辦小提醒</h3>
+    <ul class="dots">
+      <li>計日型是從<b>生效時間起每 24 小時</b>算一天（台灣時間）。11/3 下午到 11/7 晚上約 4 天多，要買 <b>5 日</b>。</li>
+      <li>出國前在<b>台灣大官網</b>申請，可以預約生效時間。$129 是「官網限定」價，11/30 前要申請。</li>
+      <li>手機要開 <b>VoLTE</b> 和「數據漫遊」。日本已關 3G，沒開 VoLTE 就連簡訊都收不到。</li>
+      <li>一旦開始使用就不能退費或取消。</li>
+      <li>還沒確定的事（建議打 188 問）：經濟包用完 12GB 後是降速還是斷網；在日本收簡訊是否免費。</li>
+    </ul>
+    <div class="links"><a class="pill-link main" target="_blank" rel="noopener" href="https://www.taiwanmobile.com/travel/postpaid-roaming-jp.html">台灣大日本漫遊官方頁 ↗</a></div>
+  </div>
+
+  <h2 class="sec-title" id="car-card">🚕 機場接送怎麼訂</h2>
+  <div class="grid2">
+    <div class="card soft-mizu">
+      <h3>🌅 去程 11/3</h3>
+      <p>09:30 起飛，<b>07:00 前</b>到桃園 T2。台北市出發約 50–60 分，建議 05:45–06:00 上車。</p>
+      <p><small>有些業者把 06:00 前算夜間時段，訂車時看清楚。</small></p>
+    </div>
+    <div class="card soft-coral">
+      <h3>🌙 回程 11/7</h3>
+      <p>22:45 落地，出關約 30–60 分，<b>上車約 23:30–23:45</b>，幾乎一定有夜間加價。</p>
+      <p><small>填航班號碼，有些業者落地後免費等 60–90 分鐘。</small></p>
+    </div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>項目</th><th>一般行情（台北市↔桃園機場）</th></tr></thead>
+    <tbody>
+      <tr><td>多早訂</td><td>48 小時前，連假前 1–2 週。55688 要 2 個工作天前，LINE GO 要 2 天前</td></tr>
+      <tr><td>四人座</td><td>約 $1,100–1,300</td></tr>
+      <tr><td>六／七人座</td><td>約 $1,500–1,700（行李多建議）</td></tr>
+      <tr><td>夜間加價</td><td>約 $120–300（55688 是 23:00–05:59 加 $200）</td></tr>
+      <tr><td>兒童增高墊</td><td>多數可加購 $100–300</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note info">👧 法規：4–12 歲兒童一般要坐兒童座椅或增高墊，但<b>營業車後座</b>可以免除。為了安全，還是建議加訂增高墊。</div>
+  <p class="src">價格是 2025–2026 文章整理的行情，各家不同，實際以訂車報價為準。你家出發地不同，價格也會不同。</p>
+</section>
+
+<!-- ================= 付款 ================= -->
+<section class="panel" id="p-pay" hidden>
+  <div class="day-head bg-take">
+    <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#ill-pay"/></svg>
+    <div><div class="num">出發前設定好</div><h2>付款攻略</h2><div class="meta">西瓜卡・雙幣卡</div></div>
+  </div>
+  <div class="note ok">建議：大人各一張 <b>iPhone 錢包 Suica</b>（JCB／Mastercard 加值）＋一張日本回饋高的信用卡＋現金約 ¥30,000。<b>5 歲小公主搭電車免費，不用辦卡。</b></div>
+
+  <h2 class="sec-title">🍉 西瓜卡 Suica</h2>
+  <div class="card">
+    <h3>市區和迪士尼都能用嗎？</h3>
+    <ul class="dots">
+      <li><b>市區：</b>電車、公車、便利商店、販賣機、多數連鎖店，看到交通 IC 標誌就能感應。</li>
+      <li><b>迪士尼：</b>多數餐廳和商店可用 Suica、Apple Pay、iD、QUICPay，也能刷信用卡。每筆上限 ¥20,000。</li>
+      <li><b>不能感應：</b>氣球攤、部分推車、售票處、部分紀念品店。</li>
+      <li><b>QR 付款</b>（PayPay、Alipay）只能用在 App 行動點餐和線上買票。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>📍 哪裡買？（離第一晚住宿最近）</h3>
+    <ol class="num">
+      <li><b>成田 T2：JR「空港第2ビル駅」</b>，JR EAST Travel Service Center 或 Welcome Suica 專用售票機。第一天等 15:20 巴士時順便買。</li>
+      <li><b>JR 新浦安站</b>（飯店最近的車站）：多功能售票機可買實體 Suica，只收現金。</li>
+      <li><b>只加值：</b>便利商店收銀台、7-Eleven 的 Seven Bank ATM（現金）。</li>
+    </ol>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th></th><th>📱 iPhone 錢包</th><th>🍉 Welcome Suica</th><th>💳 一般 Suica</th></tr></thead>
+    <tbody>
+      <tr><td>費用</td><td>免押金</td><td>免押金，全額可用</td><td>含押金 ¥500</td></tr>
+      <tr><td>效期</td><td>無</td><td>28 天</td><td>最後使用起 10 年</td></tr>
+      <tr><td>加值</td><td>Apple Pay 信用卡</td><td>現金</td><td>現金</td></tr>
+      <tr><td>退費</td><td>只能退到日本帳戶</td><td>不能退</td><td>可退（扣 ¥220）</td></tr>
+      <tr class="pick"><td>推薦</td><td>⭐ 大人首選</td><td>手機沒電的備案</td><td>想留紀念</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card soft-mizu">
+    <h3>📱 iPhone 怎麼加？</h3>
+    <ol class="num">
+      <li>「錢包」App → 右上「＋」→「交通卡」→ 日本 →「Suica」</li>
+      <li>輸入金額（最少 ¥1,000），用 Apple Pay 的信用卡付款，不用改地區</li>
+      <li>自動設成「快速交通卡」，過閘門不用解鎖</li>
+    </ol>
+    <div class="note warn" style="margin-top:8px">加值用 <b>JCB 或 Mastercard</b>。多篇部落格回報台灣 Visa 常失敗（非官方，也有人成功）。日本時間 02:00–04:00 維護。卡內上限 ¥20,000。</div>
+  </div>
+  <div class="card">
+    <h3>👧 5 歲小孩要付費嗎？</h3>
+    <ul class="dots">
+      <li><b>電車、地鐵：免費</b>。1 歲到上小學前由大人陪同免費，每位大人最多 2 名。</li>
+      <li><b>迪士尼單軌電車：免費</b>（每位持票者最多 2 名學齡前幼兒）。</li>
+      <li><b>利木津巴士：</b>抱在腿上免費，自己坐要買兒童票 ¥1,450。</li>
+      <li><b>迪士尼門票、DPA：要買。</b></li>
+    </ul>
+  </div>
+
+  <h2 class="sec-title">💳 需要雙幣卡嗎？</h2>
+  <div class="note warn"><b>不一定需要。</b>5 天短程用一張日本回饋高的信用卡就夠。已經有日圓存款或常去日本，雙幣卡才划算。</div>
+  <div class="grid2">
+    <div class="card"><h3>🔄 怎麼運作</h3><p>先開銀行的日圓帳戶、挑好匯率換日圓。在日本刷卡<b>直接扣日圓</b>，不夠的部分用當天匯率扣台幣。</p></div>
+    <div class="card"><h3>⚠️ 常見誤會</h3><p>雙幣卡<b>不一定免 1.5%</b> 海外手續費，例如玉山熊本熊卡 2025/7/1 起照收。刷卡時一律選<b>日圓</b>付款，選台幣（DCC）會多收費。</p></div>
+  </div>
+  <div class="card soft-yama">
+    <h3>🐻 例子：玉山熊本熊卡（JCB）</h3>
+    <p>日本一般消費 2.5%（無上限）＋指定通路 6%（需登錄，每期上限 NT$500 共用），最高 8.5%，到 2026/12/31。Suica 加值也在 6% 通路內。</p>
+    <div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://event.esunbank.com.tw/credit/kumamon-card/japan-discount.html">玉山官方活動頁 ↗</a></div>
+  </div>
+  <p class="src">優惠常變動，以銀行官網為準。以上是公開資訊整理，不是理財建議。</p>
+</section>
+
+<!-- ================= 住宿 ================= -->
+<section class="panel" id="p-stay" hidden>
+  <h2 class="sec-title">🛏️ 住宿</h2>
+  <div data-lock="stay"></div>
+
+  <h2 class="sec-title">🚃 交通工具速查</h2>
+  <div class="grid2">
+    <div class="card"><h3><span class="tag t-bus">巴士</span> 利木津巴士</h3><p>成田⇄新浦安線，大人 ¥2,900、兒童 ¥1,450，幼兒抱著免費。售票櫃台可刷交通 IC，車上不行。</p><div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://www.limousinebus.co.jp/ja/timetable/detail/Narita-Shinurayasu/?dir=1">時刻表 ↗</a></div></div>
+    <div class="card"><h3><span class="tag t-mono">單軌</span> 迪士尼度假區線</h3><p>4 站環狀，一圈約 13 分。大人 ¥300、兒童 ¥150，學齡前免費。</p><div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tc/tdr/resortline/">官方 ↗</a></div></div>
+    <div class="card"><h3><span class="tag t-train">電車</span> JR 京葉線・山手線</h3><p>大人刷 Suica。上小學前的幼兒免費（每位大人最多 2 名）。</p></div>
+    <div class="card"><h3><span class="tag t-train">電車</span> 京成 Skyliner</h3><p>京成上野 → 成田 T2 約 41 分，大人 ¥2,580，全車指定席。</p><div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/">官網 ↗</a></div></div>
+  </div>
+</section>
+
+<!-- ================= 資料 ================= -->
+<section class="panel" id="p-info" hidden>
+  <h2 class="sec-title">🗺️ 迪士尼地圖</h2>
+  <div class="thumbs">
+    <a class="thumb" href="files/tds_map_tc.pdf" target="_blank" rel="noopener"><img src="files/tds_thumb.jpg" alt="迪士尼海洋地圖縮圖" loading="lazy"><span>海洋 PDF</span></a>
+    <a class="thumb" href="files/tdl_map_tc.pdf" target="_blank" rel="noopener"><img src="files/tdl_thumb.jpg" alt="迪士尼樂園地圖縮圖" loading="lazy"><span>樂園 PDF</span></a>
+    <a class="thumb" href="files/tdl_map.jpg" target="_blank" rel="noopener"><img src="files/tdl_map.jpg" alt="迪士尼樂園設施圖" loading="lazy"><span>樂園設施圖</span></a>
+  </div>
+
+  <h2 class="sec-title">🔒 機票・訂房確認單</h2>
+  <div data-lock="docs"></div>
+
+  <h2 class="sec-title">📱 必備 App</h2>
+  <div class="grid2">
+    <div class="card"><h3>🎠 Tokyo Disney Resort</h3><p>門票、DPA、等候時間、節目表。只有日／英文。</p></div>
+    <div class="card"><h3>🗺️ Google Maps</h3><p>轉乘最準，先離線下載東京地圖。</p></div>
+    <div class="card"><h3>🚖 GO／Uber</h3><p>帶行李換宿、合羽橋短程叫車。</p></div>
+    <div class="card"><h3>🧾 Visit Japan Web</h3><p>入境＋海關 QR Code，登機前完成。</p><div class="links"><a class="pill-link" target="_blank" rel="noopener" href="https://services.digital.go.jp/en/visit-japan-web/">官方 ↗</a></div></div>
+  </div>
+
+  <h2 class="sec-title">🌤️ 天氣與小提醒</h2>
+  <div class="grid2">
+    <div class="card"><h3>11 月初東京</h3><p>白天約 17–20°C，早晚 10–13°C，日落約 16:40。短袖＋薄長袖＋輕外套。</p></div>
+    <div class="card"><h3>🛍️ 免稅</h3><p>同店同日滿 ¥5,000（未稅）可免稅，帶護照。</p></div>
+    <div class="card"><h3>♨️ 大浴場</h3><p>日本公共澡堂可能不允許刺青。</p></div>
+    <div class="card"><h3>🆘 緊急電話</h3><p>報警 110・救護車／消防 119<br>台北駐日經濟文化代表處 +81 3-3280-7811<br>急難救助（日本境內）080-1009-7179</p></div>
+  </div>
+
+  <h2 class="sec-title">📚 資料來源</h2>
+  <ul class="dots src">
+    <li><a target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tds/monthly/calendar/202611/">東京迪士尼官方 11 月營業與價格</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tc/tdr/guide/app_service/disneypremieraccess.html">東京迪士尼官方 DPA 說明</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.tdr-waits.com/dpa">tdr-waits DPA 售完統計</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.taiwanmobile.com/travel/postpaid-roaming-jp.html">台灣大哥大 原號漫遊日本</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.taiwanmobile.com/mobile/prepaid/prepaidRoam/jp.html">台灣大哥大 預付卡日本漫遊通</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.funliday.com/posts/2026-airport-transfer-top18/">Funliday 2026 機場接送比較</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.jreast.co.jp/multi/en/welcomesuica/purchase.html">JR 東日本 Welcome Suica</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.jreast.co.jp/kippu/06.html">JR 東日本 大人／兒童／幼兒票價</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.limousinebus.co.jp/ja/timetable/detail/Narita-Shinurayasu/?dir=1">利木津巴士 成田→新浦安</a></li>
+    <li><a target="_blank" rel="noopener" href="https://event.esunbank.com.tw/credit/kumamon-card/japan-discount.html">玉山熊本熊卡日本優惠</a></li>
+    <li><a target="_blank" rel="noopener" href="https://castel.jp/p/2088">神仙教母美容院 預約與價格整理</a></li>
+  </ul>
+  <div class="foot">東京小公主冒險手冊・最後更新 2026/10/25<br>祝小公主變身成功 ✨</div>
+</section>
+
+</main>
+
+<!-- illustration symbols (day heads) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ill-d1" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#E3F1F7"/>
+      <g class="float"><use href="#i-plane" x="58" y="4" width="40" height="40"/></g>
+      <path d="M0 66 H120" stroke="#3E3A39" stroke-width="3"/>
+      <g class="bob"><rect x="10" y="40" width="64" height="24" rx="8" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+      <rect x="16" y="45" width="12" height="9" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/><rect x="32" y="45" width="12" height="9" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/><rect x="48" y="45" width="12" height="9" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/>
+      <circle cx="24" cy="66" r="6" fill="#3E3A39"/><circle cx="60" cy="66" r="6" fill="#3E3A39"/></g>
+      <path d="M86 84 V60 q8 -8 16 0 V84" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/>
+    </symbol>
+    <symbol id="ill-castle" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#FCE6E1"/>
+      <g class="float2"><path d="M18 18 l3 -7 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/></g>
+      <g class="float"><path d="M98 30 l2 -5 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2z" fill="#fff" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/></g>
+      <rect x="36" y="38" width="48" height="34" fill="#fff" stroke="#3E3A39" stroke-width="3"/>
+      <rect x="30" y="30" width="14" height="42" fill="#fff" stroke="#3E3A39" stroke-width="3"/>
+      <rect x="76" y="30" width="14" height="42" fill="#fff" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M28 31 L37 14 L46 31 Z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M74 31 L83 14 L92 31 Z" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="52" y="24" width="16" height="16" fill="#fff" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M50 25 L60 8 L70 25 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M54 72 V60 a6 6 0 0 1 12 0 V72" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M0 72 H120" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M0 74 H120 V84 H0z" fill="#A8D3E6"/>
+    </symbol>
+    <symbol id="ill-d3" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#FDF2D3"/>
+      <g class="wiggle"><path d="M16 34 H52 L48 72 H20 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M26 34 V28 a8 8 0 0 1 16 0 V34" fill="none" stroke="#3E3A39" stroke-width="3"/></g>
+      <g class="wiggle" style="animation-delay:-1.5s"><path d="M44 42 H72 L70 72 H46 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M52 42 V37 a6 6 0 0 1 12 0 V42" fill="none" stroke="#3E3A39" stroke-width="3"/></g>
+      <path d="M0 76 H120" stroke="#3E3A39" stroke-width="3"/>
+      <g class="bob"><rect x="78" y="48" width="40" height="22" rx="9" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/><rect x="85" y="53" width="10" height="8" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/><rect x="99" y="53" width="10" height="8" rx="2" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/></g>
+    </symbol>
+    <symbol id="ill-d4" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#E3F1F7"/>
+      <g class="float"><circle cx="92" cy="20" r="4" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/><circle cx="100" cy="10" r="3" fill="#fff" stroke="#3E3A39" stroke-width="2.5"/></g>
+      <g class="bob"><ellipse cx="44" cy="50" rx="18" ry="24" fill="#3E3A39"/><ellipse cx="44" cy="54" rx="11" ry="17" fill="#fff"/><circle cx="38" cy="38" r="2.5" fill="#fff"/><circle cx="50" cy="38" r="2.5" fill="#fff"/><path d="M40 44 L44 48 L48 44 Z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round"/><path d="M36 74 h7 M45 74 h7" stroke="#F6D27A" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="47" r="3" fill="#F2A497"/><circle cx="53" cy="47" r="3" fill="#F2A497"/></g>
+      <g class="drift" style="animation-duration:7s"><path d="M78 52 q12 -12 24 0 q-12 12 -24 0z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><path d="M102 52 l8 -6 v12z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/><circle cx="85" cy="51" r="2" fill="#3E3A39"/></g>
+    </symbol>
+    <symbol id="ill-d5" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#FCE6E1"/>
+      <g class="wiggle" style="animation-duration:4s"><circle cx="42" cy="52" r="20" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/><circle cx="42" cy="52" r="11" fill="#fff" stroke="#3E3A39" stroke-width="3"/><path d="M60 46 L90 34" stroke="#3E3A39" stroke-width="7" stroke-linecap="round"/><path d="M60 46 L90 34" stroke="#F6D27A" stroke-width="2" stroke-linecap="round"/></g>
+      <g class="float"><use href="#i-plane" x="74" y="2" width="36" height="36"/></g>
+      <g class="float2"><path d="M30 24 q3 -6 0 -12 M40 22 q3 -6 0 -12" stroke="#3E3A39" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+    </symbol>
+    <symbol id="ill-pay" viewBox="0 0 120 84">
+      <rect width="120" height="84" rx="14" fill="#E9F3E3"/>
+      <g class="wiggle"><rect x="20" y="22" width="60" height="40" rx="8" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/><circle cx="36" cy="40" r="8" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5"/><path d="M33 33 l3 -4 l3 4" fill="none" stroke="#3E3A39" stroke-width="2"/><path d="M52 36 H72 M52 46 H66" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/></g>
+      <g class="float"><rect x="76" y="34" width="28" height="42" rx="7" fill="#fff" stroke="#3E3A39" stroke-width="3"/><path d="M84 66 h12" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/><path d="M84 46 q6 -6 12 0 M86 50 q4 -4 8 0" stroke="#3E3A39" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<script>
+/* ===================== DATA ===================== */
+const GM = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+const DAYS = [
+  {id:'d1', md:'11/3', dow:'二', title:'抵達東京・海濱飯店放鬆', ill:'ill-d1', bg:'bg-mizu', effort:2,
+   meta:'抵達成田後搭利木津巴士到飯店', stay:'海濱飯店（第 1 晚）',
+   notes:[],
+   items:[
+    {t:'05:45', title:'機場接送出發 → 桃園機場 T2', desc:'已預約的機場接送。07:00 前到機場。', tags:[['taxi','🚕 機場接送']]},
+    {t:'07:00', title:'桃園 T2 報到、託運', desc:'中華航空櫃台，託運每人 1 件。帶護照和 Visit Japan Web QR Code。', tags:[['walk','🚶 步行']]},
+    {t:'09:30', title:'起飛 → 13:30 抵達成田 T2', desc:'日本比台灣快 1 小時。給小公主準備耳機、零食、貼紙書。', tags:[['plane','✈️ 飛機']]},
+    {t:'14:30', title:'入境 → 買巴士票＋Welcome Suica', desc:'入境大廳的<b>利木津巴士當日售票櫃台</b>買「新浦安線」到飯店的票（大人 ¥2,900）。等車時到地下 JR「空港第2ビル駅」買 Welcome Suica。', tags:[['walk','🚶 步行']], tip:'👧 小公主抱在腿上免費；自己坐要買兒童票 ¥1,450。', links:[['新浦安線時刻表','https://www.limousinebus.co.jp/ja/timetable/detail/Narita-Shinurayasu/?dir=1',1]]},
+    {t:'15:20', title:'利木津巴士 → 新浦安站 16:40 → 飯店 17:00', desc:'下一班是 17:40（19:20 到）。', tags:[['bus','🚌 利木津巴士']], warn:'沒搭上的話：搭「迪士尼度假區線」巴士到樂園巴士總站，再轉飯店免費接駁車；或 JR 到新浦安站搭計程車約 10 分。'},
+    {t:'17:00', title:'飯店 Check-in', desc:'順便問櫃台<b>迪士尼接駁巴士時刻表</b>，確認明天的班次。', tags:[['walk','🚶 步行']]},
+    {t:'18:00', title:'晚餐＋超商補給', desc:'累了就在飯店附近吃。想逛可搭巴士 10 分到新浦安站（MONA、atré）。', tags:[['bus','🚌 路線巴士']], links:[['新浦安站',GM('新浦安駅')]]},
+    {t:'20:00', title:'頂樓大浴場泡湯', must:true, desc:'住客專用，18:00–翌日 09:00，看得到海。', tags:[['walk','🚶 步行']], tip:'👑 明天要早起變身，今晚早點睡。'}
+   ]},
+  {id:'d2', md:'11/4', dow:'三', title:'公主變身＋迪士尼海洋', ill:'ill-castle', bg:'bg-coral', effort:5,
+   meta:'海洋 09:00–21:00・大人 ¥9,900', stay:'海濱飯店（第 2 晚）',
+   notes:[['alert','⚡ 想要冰雪奇緣和夜間秀的 DPA，可以改用「方案 A」：9:00 全家先進海洋買 DPA，再出園去變身。<a href="#disney" data-go="disney">看兩種玩法 →</a>']],
+   items:[
+    {t:'09:00', title:'飯店接駁巴士 → 樂園巴士總站', desc:'約 15–20 分。下車走 5–10 分到樂園大飯店（單軌電車「東京迪士尼樂園站」旁）。', tags:[['bus','🚌 接駁巴士']], warn:'接駁車時刻依開園時間調整，前一晚問櫃台。'},
+    {t:'09:45', title:'抵達東京迪士尼樂園大飯店', desc:'先上廁所！在大廳樓梯拍「變身前」照片。', tags:[['walk','🚶 步行']], links:[['樂園大飯店',GM('Tokyo Disneyland Hotel')]]},
+    {t:'10:30', title:'神仙教母美容院・公主變身', must:true, desc:'城堡方案約 75 分：禮服、髮型、化妝、美甲、公主照片。', tags:[['walk','✨ 變身']], links:[['官方預約頁','https://www.tokyodisneyresort.jp/happy/bbb/',1]]},
+    {t:'12:00', title:'單軌電車 → 東京迪士尼海洋站', desc:'樂園站上車，約 7 分。大人刷 Suica，學齡前免費。', tags:[['mono','🚝 單軌電車']]},
+    {t:'12:20', title:'入園 → 用 App 試買冰雪奇緣 DPA', desc:'<b>三人都刷票入園後</b>才買得到，每人 ¥2,500。顯示售完就持續重新整理。', tags:[['walk','🎟️ 入園']]},
+    {t:'12:45', title:'午餐：賽巴斯丁加力騷廚房', desc:'美人魚礁湖裡，全室內。套上圍兜保護禮服。', tags:[['walk','🍽️ 午餐']]},
+    {t:'13:30', title:'美人魚礁湖', must:true, desc:'8 成在室內：跳躍水母、旋轉海藻杯、河豚氣球、艾莉兒遊樂場。', tags:[['walk','🧜‍♀️ 設施']]},
+    {t:'午後', title:'25 週年水上表演', desc:'地中海港灣約 15 分鐘，時間看 App。11/4 沒有萬聖節或聖誕節活動。', tags:[['walk','🎉 表演']]},
+    {t:'16:30', title:'夢幻泉鄉・冰雪王國', must:true, desc:'持門票就能進。沒有 DPA 就 17:00 後排隊，城堡點燈很美。日落約 16:40。', tags:[['walk','❄️ 設施']], tip:'👟 拍完照換回運動鞋，走回正門將近 1 公里。'},
+    {t:'17:30', title:'晚餐：艾倫戴爾皇家宴會廳', desc:'城堡裡用餐，可試 Priority Seating 或當天 App。', tags:[['walk','🍽️ 晚餐']]},
+    {t:'夜間', title:'Believe! Sea of Dreams 夜間秀', must:true, desc:'地中海港灣約 30 分，另有約 5 分鐘花火。', tags:[['walk','🌌 夜間秀']]},
+    {t:'散場', title:'渡輪 → 海洋巴士總站 7 號 → 飯店', desc:'從失落河三角洲碼頭坐電動船到地中海港灣，省腳力。', tags:[['boat','⛴️ 渡輪'],['bus','🚌 接駁巴士']], warn:'飯店接駁車只能在巴士總站搭，單軌電車站不行。'}
+   ]},
+  {id:'d3', md:'11/5', dow:'四', title:'Outlet 血拼・換宿大塚', ill:'ill-d3', bg:'bg-yama', effort:3,
+   meta:'早上退房寄行李，下午換到大塚', stay:'大塚飯店（第 1 晚）',
+   notes:[['ok','🧳 早上直接退房、把大行李寄在櫃台，就不用趕 12:00 前回來。']],
+   items:[
+    {t:'09:30', title:'退房寄行李 → 巴士到新浦安站', desc:'約 10 分。', tags:[['bus','🚌 路線巴士']]},
+    {t:'10:00', title:'JR 京葉線 → 海濱幕張站', desc:'約 15 分，出站 1 分鐘到 Outlet。', tags:[['train','🚃 JR 京葉線']], links:[['路線','https://www.google.com/maps/dir/?api=1&origin=Shin-Urayasu+Station&destination=Mitsui+Outlet+Park+Makuhari&travelmode=transit']]},
+    {t:'10:15', title:'三井 Outlet Park 幕張', must:true, desc:'10:00–20:00。日系服飾、運動戶外品牌，午餐在美食街。', tags:[['walk','🛍️ 逛街']], links:[['官網','https://mitsui-shopping-park.com/mop/makuhari/'],['位置',GM('Mitsui Outlet Park Makuhari')]]},
+    {t:'14:00', title:'回新浦安 → 回飯店領行李', desc:'京葉線回新浦安，再搭巴士或計程車。', tags:[['train','🚃 JR 京葉線'],['bus','🚌 巴士']]},
+    {t:'15:00', title:'前往大塚飯店', desc:'<b>電車：</b>京葉線到東京站（17 分）→ 山手線到大塚站（約 25 分）。<b>計程車：</b>帶行李和小孩最省力。', tags:[['train','🚃 JR'],['taxi','🚕 計程車']], warn:'東京站京葉線月台很深，轉山手線要走 10–15 分。'},
+    {t:'16:30', title:'Check-in 櫓造型客房', desc:'木頭上下層空間，小孩會很喜歡。', tags:[['walk','🚶 步行']]},
+    {t:'18:00', title:'大塚在地居酒屋／拉麵', desc:'請櫃台推薦適合帶小孩的店。', tags:[['walk','🍜 晚餐']], links:[['大塚站拉麵',GM('大塚駅 ラーメン')]]}
+   ]},
+  {id:'d4', md:'11/6', dow:'五', title:'池袋水族館＋生活香氛', ill:'ill-d4', bg:'bg-mizu', effort:3,
+   meta:'大塚 ⇄ 池袋 山手線 1 站 3 分', stay:'大塚飯店（第 2 晚）', notes:[],
+   items:[
+    {t:'09:15', title:'山手線 大塚 → 池袋', desc:'3 分鐘，池袋東口步行約 10 分到 Sunshine City。', tags:[['train','🚃 山手線']], links:[['路線','https://www.google.com/maps/dir/?api=1&origin=Otsuka+Station+Tokyo&destination=Sunshine+City+Ikebukuro&travelmode=transit']]},
+    {t:'09:30', title:'陽光水族館（頂樓）', must:true, desc:'「天空企鵝」從頭頂游過、海獅表演。大人約 ¥2,600–3,200，依季節。最後入場是閉館前 1 小時。', tags:[['walk','🐧 水族館']], links:[['官網・時間票價','https://sunshinecity.jp/aquarium/',1],['位置',GM('Sunshine Aquarium')]], tip:'🦭 進場先看今天的表演時間表。'},
+    {t:'12:00', title:'寶可夢中心 MEGA TOKYO＋扭蛋百貨', desc:'都在 Sunshine City ALPA 裡，午餐也在這裡解決。', tags:[['walk','⚡ 逛街']], links:[['寶可夢中心',GM('Pokemon Center Mega Tokyo')],['扭蛋百貨',GM('ガシャポンのデパート 池袋総本店')]]},
+    {t:'14:00', title:'212 KITCHEN STORE', desc:'日系廚具、餐具、便當盒。', tags:[['walk','🍳 雜貨']], links:[['位置',GM('212 KITCHEN STORE Sunshine City')]]},
+    {t:'16:00', title:'Marks & Web 香氛＋Loft／Hands', must:true, desc:'兩家店：<b>Lumine 池袋 7F</b>（南改札直通）、<b>東武百貨 2F</b>（西口直通）。', tags:[['walk','🌿 香氛']], links:[['Lumine 池袋',GM('MARKS&WEB ルミネ池袋')],['東武百貨',GM('東武百貨店 池袋店')]]},
+    {t:'18:00', title:'池袋站前晚餐 → 回大塚', desc:'今晚先整理行李，明天退房後要寄放。', tags:[['train','🚃 山手線']]}
+   ]},
+  {id:'d5', md:'11/7', dow:'六', title:'合羽橋・輕鬆返台', ill:'ill-d5', bg:'bg-take', effort:3,
+   meta:'退房 11:00 前・19:30 起飛', stay:'回到溫暖的家', notes:[['alert','✈️ 19:30 起飛：最晚 15:45 從京成上野搭 Skyliner，17:00 前到成田 T2。']],
+   items:[
+    {t:'09:00', title:'退房，帶行李去上野', desc:'直接帶去上野寄放，不用再繞回大塚。', tags:[['walk','🧳 退房']]},
+    {t:'09:30', title:'山手線 大塚 → 上野 → 京成上野站寄行李', desc:'約 15 分。假日大型置物櫃容易滿，早點到。可先買 Skyliner 指定席。', tags:[['train','🚃 山手線']], links:[['Skyliner 訂票','https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/',1],['京成上野站',GM('Keisei Ueno Station')]]},
+    {t:'10:15', title:'合羽橋道具街', must:true, desc:'日本製雪平鍋、刀具、餐具、食物模型。上野搭計程車約 5 分（約 ¥800–1,000）。部分店家週末休息。', tags:[['taxi','🚕 計程車']], links:[['合羽橋',GM('Kappabashi Kitchen Town')]]},
+    {t:'13:00', title:'阿美橫丁午餐＋最後補貨', desc:'零食、藥妝、乾貨。週六人多，牽好小孩。', tags:[['walk','🍡 逛街']], links:[['阿美橫丁',GM('Ameyoko')]]},
+    {t:'15:30', title:'領行李 → Skyliner 到成田 T2', desc:'約 41 分，大人 ¥2,580。', tags:[['train','🚄 Skyliner']]},
+    {t:'16:30', title:'報到、退稅、免稅店', desc:'液體伴手禮放託運。', tags:[['walk','🚶 步行']]},
+    {t:'19:30', title:'起飛 → 22:45 抵達桃園 T2', desc:'', tags:[['plane','✈️ 飛機']]},
+    {t:'23:30', title:'機場接送回家', desc:'出關後聯絡司機。夜間會有加價。', tags:[['taxi','🚕 機場接送']]}
+   ]}
+];
+
+/* ===================== HELPERS ===================== */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const reduceMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===================== OVERVIEW ===================== */
+$('#ov-grid').innerHTML = DAYS.map((d,i)=>`
+  <button class="ov-card ${i===1?'soft-coral':''}" data-day="${d.id}">
+    <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#${d.ill}"/></svg>
+    <span class="d">D${i+1}・${d.md}（${d.dow}）</span><span class="t">${d.title}</span>
+  </button>`).join('');
+
+/* ===================== ITINERARY ===================== */
+$('#day-switch').innerHTML = DAYS.map((d,i)=>`
+  <button class="day-chip ${d.bg.replace('bg-','soft-')}" role="tab" data-day="${d.id}" aria-selected="false">
+    <span class="dn">D${i+1}・${d.dow}</span><span class="dd">${d.md}</span>
+  </button>`).join('');
+
+function stars(n){ return '★'.repeat(n) + '☆'.repeat(5-n); }
+function renderDay(id, animate){
+  const i = Math.max(0, DAYS.findIndex(d=>d.id===id));
+  const d = DAYS[i];
+  $$('#day-switch .day-chip').forEach(b=>b.setAttribute('aria-selected', b.dataset.day===d.id));
+  const items = d.items.map(it=>`
+    <div class="ti ${it.must?'must':''}"><div class="box">
+      <div class="top"><span class="time">${it.t}</span>${(it.tags||[]).map(([k,l])=>`<span class="tag t-${k}">${l}</span>`).join('')}${it.must?'<span class="must-badge">★ 必去</span>':''}</div>
+      <div class="name">${it.title}</div>
+      ${it.desc?`<div class="desc">${it.desc}</div>`:''}
+      ${it.warn?`<div class="warn">⚠️ ${it.warn}</div>`:''}
+      ${it.tip?`<div class="tip">${it.tip}</div>`:''}
+      ${it.links?`<div class="links">${it.links.map(([l,u,m])=>`<a class="pill-link ${m?'main':''}" target="_blank" rel="noopener" href="${u}">${l} ↗</a>`).join('')}</div>`:''}
+    </div></div>`).join('');
+  const view = $('#day-view');
+  view.innerHTML = `
+    <div class="panel">
+      <div class="day-head ${d.bg}">
+        <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#${d.ill}"/></svg>
+        <div><div class="num">D${i+1}・2026/${d.md}（${d.dow}）</div><h2>${d.title}</h2>
+        <div class="meta">體力 ${stars(d.effort)}<br>${d.meta}</div></div>
+      </div>
+      ${d.notes.map(([k,t])=>`<div class="note ${k}">${t}</div>`).join('')}
+      <div class="legend" aria-label="交通標籤說明"><span class="tag t-plane">✈️ 飛機</span><span class="tag t-bus">🚌 巴士</span><span class="tag t-train">🚃 電車</span><span class="tag t-mono">🚝 單軌</span><span class="tag t-taxi">🚕 計程車</span><span class="must-badge">★ 必去</span></div>
+      <div class="tl">${items}</div>
+      <div class="stay-line">🛏️ 今晚：${d.stay}${i<4?' <a href="#stay" data-go="stay">住宿資訊 →</a>':''}</div>
+      <div class="pager">
+        <button data-day="${i>0?DAYS[i-1].id:''}" ${i===0?'disabled':''}>← ${i>0?DAYS[i-1].md:''}</button>
+        <button data-day="${i<4?DAYS[i+1].id:''}" ${i===4?'disabled':''}>${i<4?DAYS[i+1].md:''} →</button>
+      </div>
+    </div>`;
+  if(animate && !reduceMotion()){ view.classList.remove('boing'); void view.offsetWidth; view.classList.add('boing'); }
+  store.set('tdr-day', d.id);
+}
+
+/* ===================== TABS / ROUTING ===================== */
+const TABS = $$('.tab').map(b=>b.dataset.tab);
+function show(tab, opts={}){
+  let day = null;
+  if(/^d[1-5]$/.test(tab)){ day = tab; tab = 'plan'; }
+  if(!TABS.includes(tab)) tab = 'home';
+  $$('.panel[id^="p-"]').forEach(p=>p.hidden = p.id !== 'p-'+tab);
+  $$('.tab').forEach(b=>{ const on=b.dataset.tab===tab; b.setAttribute('aria-selected', on); if(on){ try{ b.scrollIntoView({inline:'center',block:'nearest'}); }catch(e){} } });
+  if(tab==='plan') renderDay(day || store.get('tdr-day','d1'), !!opts.animate);
+  const hash = '#' + (day || tab);
+  if(opts.push!==false && location.hash !== hash){ try{ history.pushState(null,'',hash); }catch(e){} }
+  if(!opts.keepScroll){ try{ window.scrollTo({top:0,behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
+}
+document.addEventListener('click', e=>{
+  const tab = e.target.closest('.tab'); if(tab){ show(tab.dataset.tab); return; }
+  const dayBtn = e.target.closest('[data-day]');
+  if(dayBtn && dayBtn.dataset.day){ e.preventDefault(); show(dayBtn.dataset.day, {animate:true, keepScroll: !!e.target.closest('#day-switch')}); return; }
+  const go = e.target.closest('[data-go]'); if(go){ e.preventDefault(); show(go.dataset.go); return; }
+  const sc = e.target.closest('[data-scroll]');
+  if(sc){ e.preventDefault(); const t = document.getElementById(sc.dataset.scroll); if(t) t.scrollIntoView({behavior: reduceMotion()?'auto':'smooth', block:'start'}); }
+});
+window.addEventListener('popstate', ()=>show(location.hash.slice(1), {push:false}));
+window.addEventListener('hashchange', ()=>show(location.hash.slice(1), {push:false}));
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+show(location.hash.slice(1) || 'home', {push:false});
+window.addEventListener('load', ()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
+document.addEventListener('keydown', e=>{
+  if(e.target.closest('input,textarea')) return;
+  if($('#p-plan').hidden) return;
+  const cur = store.get('tdr-day','d1'); const i = DAYS.findIndex(d=>d.id===cur);
+  if(e.key==='ArrowRight' && i<4) show(DAYS[i+1].id,{animate:true});
+  if(e.key==='ArrowLeft' && i>0) show(DAYS[i-1].id,{animate:true});
+});
+
+/* ===================== COUNTDOWN ===================== */
+(function(){
+  const dep = new Date('2026-11-03T09:30:00+08:00').getTime();
+  const end = new Date('2026-11-07T22:45:00+08:00').getTime();
+  function tick(){
+    const now = Date.now(), d = dep - now;
+    if(d <= 0){
+      $('#countdown').innerHTML = `<div class="cd" style="min-width:160px"><div class="n" style="font-size:22px">${now<end?'旅途中 ✨':'平安回家 🏠'}</div></div>`;
+      $('#cd-label').textContent = now<end ? '玩得開心！' : '下次再一起去冒險';
+      return;
+    }
+    $('#cd-d').textContent = Math.floor(d/864e5);
+    $('#cd-h').textContent = Math.floor(d%864e5/36e5);
+    $('#cd-m').textContent = Math.floor(d%36e5/6e4);
+  }
+  tick(); setInterval(tick, 30000);
+})();
+
+/* ===================== CHECKLIST ===================== */
+(function(){
+  const KEY = 'tdr2026-check';
+  const s = store.get(KEY, {});
+  const items = $$('#checklist li');
+  function update(){
+    const done = items.filter(li=>li.classList.contains('done')).length;
+    $('#progress-bar').style.width = (done/items.length*100)+'%';
+    $('#progress-text').textContent = `完成 ${done} / ${items.length}（打勾只存在這支手機）`;
+  }
+  items.forEach(li=>{
+    if(s[li.dataset.id]) li.classList.add('done');
+    li.setAttribute('role','checkbox'); li.setAttribute('tabindex','0');
+    li.setAttribute('aria-checked', li.classList.contains('done'));
+    const toggle = ()=>{ li.classList.toggle('done'); const o = store.get(KEY,{}); o[li.dataset.id] = li.classList.contains('done'); store.set(KEY,o); li.setAttribute('aria-checked', li.classList.contains('done')); update(); };
+    li.addEventListener('click', e=>{ if(e.target.closest('a')) return; toggle(); });
+    li.addEventListener('keydown', e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+  });
+  update();
+})();
+
+/* ===================== FAMILY LOCK ===================== */
+const ENC = {"salt": "SL2XgRNcCUaj7Gj4MQqiKg==", "iv": "paZ4k9G2lgb9kxZB", "data": "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", "iter": 250000};
+(function(){
+  const PKEY = 'tdr2026-pw';
+  const lockHTML = name => `
+    <div class="lockbox" data-lockbox="${name}">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><use href="#i-lock"/></svg>
+      <div>這裡是家人限定的內容<br><small>輸入家人密碼就能看到航班、住宿和雲端資料夾</small></div>
+      <form><input type="password" id="pw-${name}" autocomplete="current-password" placeholder="家人密碼" aria-label="家人密碼"><button type="submit">打開</button></form>
+      <div class="err" role="alert"></div>
+    </div>`;
+  $$('[data-lock]').forEach(el=>{ el.innerHTML = lockHTML(el.dataset.lock); });
+
+  const b64 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+  async function decrypt(pw){
+    const enc = new TextEncoder();
+    const base = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(ENC.salt), iterations:ENC.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+    const buf = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(ENC.iv)}, key, b64(ENC.data));
+    return JSON.parse(new TextDecoder().decode(buf));
+  }
+  function fill(parts){
+    $$('[data-lock]').forEach(el=>{
+      const name = el.dataset.lock;
+      if(parts[name]!==undefined){ el.innerHTML = parts[name]; el.removeAttribute('data-lock'); el.setAttribute('data-unlocked', name); }
+    });
+    if(!$('#relock')){
+      const b = document.createElement('button'); b.id='relock'; b.className='lock-btn'; b.type='button'; b.textContent='🔒 這支手機登出';
+      b.addEventListener('click', ()=>{ try{ localStorage.removeItem(PKEY); }catch(e){} location.reload(); });
+      const s = $('[data-unlocked="stay"]'); if(s) s.prepend(b);
+    }
+  }
+  async function tryPw(pw, box){
+    try{
+      const parts = await decrypt(pw);
+      store.set(PKEY, pw); fill(parts); return true;
+    }catch(e){
+      if(box){ $('.err', box).textContent = (window.crypto && crypto.subtle) ? '密碼不對，再試一次' : '這個瀏覽器無法解鎖，請換 Safari 或 Chrome'; }
+      return false;
+    }
+  }
+  document.addEventListener('submit', e=>{
+    const box = e.target.closest('.lockbox'); if(!box) return;
+    e.preventDefault();
+    const pw = $('input', box).value.trim(); if(!pw) return;
+    tryPw(pw, box);
+  });
+  const saved = store.get(PKEY, null);
+  if(saved) tryPw(saved, null);
+})();
+</script>
+</body>
+</html>
