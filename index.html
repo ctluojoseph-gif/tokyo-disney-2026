@@ -38,7 +38,8 @@ small{font-size:13px;color:var(--ink-soft)}
 .tab{flex:none;border:var(--line);border-radius:var(--r-pill);background:var(--card);padding:4px 14px;font-size:15px;cursor:pointer;line-height:1.6;transition:transform .15s}
 .tab:hover{transform:translateY(-2px)}
 .tab[aria-selected="true"]{background:var(--yama)}
-@media(max-width:620px){.topnav-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding-block:8px}.tab{padding:3px 0;font-size:14px;text-align:center;white-space:nowrap}}
+@media(max-width:620px){.topnav-inner{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding-block:8px}.tab{padding:3px 0;font-size:13px;text-align:center;white-space:nowrap;letter-spacing:-.02em}}
+@media(max-width:374px){.tab{font-size:12px}}
 
 /* ---------- layout ---------- */
 .wrap{max-width:760px;margin:0 auto;padding-block:18px 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -170,6 +171,15 @@ table.compact td:first-child small{display:block;font-size:12.5px}
 .progress{height:16px;border:var(--line);border-radius:var(--r-pill);background:var(--card);overflow:hidden}
 .progress span{display:block;height:100%;background:var(--take);width:0;transition:width .3s}
 
+/* our plan */
+.memo{border:var(--line);border-radius:var(--r-lg);background:var(--card);padding:14px 16px;position:relative}
+.memo::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:90px;height:20px;background:var(--yama);opacity:.85;border:2px solid var(--ink);border-radius:4px}
+.memo ol{margin:4px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.memo .side{margin-top:10px;padding-top:10px;border-top:2px dashed #E8E2DA}
+.verdict{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0;padding:0}
+.verdict li{border:var(--line);border-radius:var(--r-md);padding:10px 14px;background:var(--card)}
+.verdict li.good{background:var(--take-lt)} .verdict li.fix{background:var(--yama-lt)} .verdict li.warn{background:var(--coral-lt)}
+.verdict li b:first-child{box-shadow:none;padding:0}
 /* packing */
 .pack-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .pack-cat{border:var(--line);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
@@ -252,6 +262,7 @@ table.compact td:first-child small{display:block;font-size:12.5px}
     <button class="tab" role="tab" data-tab="home" aria-selected="true">🏠 首頁</button>
     <button class="tab" role="tab" data-tab="plan">🗓️ 行程</button>
     <button class="tab" role="tab" data-tab="disney">🎠 迪士尼</button>
+    <button class="tab" role="tab" data-tab="mine">📝 計畫</button>
     <button class="tab" role="tab" data-tab="todo">✅ 待辦</button>
     <button class="tab" role="tab" data-tab="pack">🧳 行李</button>
     <button class="tab" role="tab" data-tab="pay">🍉 付款</button>
@@ -547,6 +558,59 @@ table.compact td:first-child small{display:block;font-size:12.5px}
     <a class="thumb" href="files/tdl_map_tc.pdf" target="_blank" rel="noopener"><img src="files/tdl_thumb.jpg" alt="東京迪士尼樂園地圖縮圖" loading="lazy"><span>樂園地圖 PDF</span></a>
   </div>
   <div class="links"><a class="pill-link main" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tc/tdr/guide/app_service/disneypremieraccess.html">官方 DPA 說明 ↗</a><a class="pill-link" target="_blank" rel="noopener" href="https://www.tdr-waits.com/dpa">DPA 售完統計 ↗</a><a class="pill-link" target="_blank" rel="noopener" href="https://www.tokyodisneyresort.jp/tds/show/">海洋表演時間 ↗</a></div>
+</section>
+
+<!-- ================= 我們的計畫 ================= -->
+<section class="panel" id="p-mine" hidden>
+  <div class="day-head bg-mizu">
+    <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#ill-castle"/></svg>
+    <div><div class="num">11/4 迪士尼海洋・照你的手寫筆記</div><h2>我們的計畫</h2><div class="meta">筆記整理 → 比對建議 → 建議時間軸</div></div>
+  </div>
+
+  <h2 class="sec-title">📒 手寫筆記整理</h2>
+  <div class="memo">
+    <p><b>入園後的設施順序</b></p>
+    <ol>
+      <li>搶冰雪 DPA（排隊約 80 分）— 9:30 前搶到（夢幻泉鄉）<span class="en">Anna and Elsa's Frozen Journey</span></li>
+      <li>玩具總動員瘋狂遊戲屋（約 30 分，美國海濱）— 視情況買 DPA，14:15 前<span class="en">Toy Story Mania!</span></li>
+      <li>DPA 翱翔：夢幻奇航 — 東京限定（地中海港灣）<span class="en">Soaring: Fantastic Flight</span></li>
+      <li>小胖（比目魚）的飛魚雲霄飛車（美人魚礁湖）— 現場排隊<span class="en">Flounder's Flying Fish Coaster</span></li>
+      <li>下午夢幻泉鄉：① 樂佩公主天燈盛會，可視情況買 DPA（19:40 前），排隊快 ② 小飛俠夢幻島歷險記（3D），可買 DPA（19:40 前）</li>
+    </ol>
+    <div class="side">
+      <p><b>表演</b></p>
+      <ul class="dots">
+        <li>★ 堅信！～夢想之海～ 19:15（一場，夜間），DPA 11:00 前買<span class="en">Believe! Sea of Dreams</span></li>
+        <li>夢想起飛（失落河三角洲）：12:25、13:50、15:55、17:20 最後一場<span class="en">Dreams Take Flight</span></li>
+        <li>舞動全球！（美國海濱），DPA 18:30 前<span class="en">Dance the Globe!</span></li>
+      </ul>
+      <p style="margin-top:6px"><b>備註：</b>租推車；SP → 商店（海洋）</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title">🔍 比對結果</h2>
+  <ul class="verdict">
+    <li class="good"><b>✅ 順序很好：</b>一入園先搶冰雪奇緣、早上玩玩具總動員、翱翔用 DPA、下午集中在夢幻泉鄉，這些都是最有效率的做法。</li>
+    <li class="good"><b>✅ 夜間秀抓得對：</b>「堅信！」11/4 只有 19:15 一場，平日約 11:00 賣完，一定要早上買。</li>
+    <li class="fix"><b>💡 夜間秀 DPA 跟冰雪奇緣一起買：</b>表演和設施的 DPA 分開算，9:00 買完冰雪奇緣可以<b>馬上</b>買「堅信！」，不用等到 11:00。</li>
+    <li class="fix"><b>💡 夢想起飛、舞動全球用免費抽選：</b>手上有「堅信！」的表演 DPA 時，要等到 19:15 入場時間或購買後 60 分鐘才能再買下一張表演 DPA，而夢想起飛平日約 10:00 就賣完。改用 App 的 <b>Entry Request 免費抽選</b>，請另一位大人入園後就抽。</li>
+    <li class="fix"><b>💡 夢想起飛其實有 5 場：</b>筆記少寫了 <b>11:00</b> 那場。11:00、12:25、13:50、15:55、17:20。最順的是 <b>12:25</b>，配猶加敦午餐。</li>
+    <li class="fix"><b>💡 舞動全球這天先跳過：</b>11/4 場次是 12:50、14:35、16:55、18:40，跟午餐、慶典、夢幻泉鄉、夜間秀都會撞到。</li>
+    <li class="fix"><b>💡 第三張 DPA 給小飛俠：</b>樂佩排隊快、不限身高，現場排就好；小飛俠排隊最久，DPA 用在它比較划算（要 102 cm）。</li>
+    <li class="warn"><b>⚠️ 身高要先量：</b>翱翔和小飛俠要 <b>102 cm</b>，飛魚雲霄飛車要 <b>90 cm</b>。不到 102 cm 的話，第二、三張 DPA 改買玩具總動員和樂佩。</li>
+    <li class="warn"><b>⚠️ 租推車有限制：</b>園區推車只借給<b>身高 100 cm、體重 15 kg 以下</b>的小孩，5 歲多半超過，可能要自備。</li>
+    <li class="warn"><b>⚠️ 筆記漏了：</b>中午的「閃耀歡騰慶典」（11:30、14:00、16:00）、午餐和晚餐。下面的時間軸都補上了。</li>
+  </ul>
+
+  <div class="card soft-yama">
+    <h3>💴 DPA 預算（每人）</h3>
+    <p>冰雪奇緣 ¥2,500＋堅信！¥2,500＋翱翔 ¥2,500＋小飛俠 ¥2,000＝<b>¥9,500／人</b>，3 人約 <b>¥28,500</b>。玩具總動員若加買再加 ¥2,000／人。</p>
+  </div>
+
+  <h2 class="sec-title">🕘 建議時間軸</h2>
+  <p class="src">這份已經同步成 <a href="#d2" data-go="d2">D2 行程</a>，兩邊內容一樣。</p>
+  <div class="tl" id="mine-tl"></div>
+  <div class="pager"><button data-go="disney">← 迪士尼攻略</button><button data-go="d2">D2 行程 →</button></div>
 </section>
 
 <!-- ================= 待辦 ================= -->
@@ -857,21 +921,24 @@ const DAYS = [
    items:[
     {t:'07:45', title:'飯店接駁巴士 → 海洋巴士總站 7 號', en:'Tokyo DisneySea Bus Terminal', desc:'約 15–20 分。帶早餐在車上或排隊時吃。', tags:[['bus','🚌 接駁巴士']], warn:'第一班時間依開園調整，11/3 入住時先問櫃台。'},
     {t:'08:15', title:'到海洋正門排隊', desc:'打開 App、確認 3 張票都在群組、信用卡準備好。', tags:[['walk','🚶 排隊']], tip:'🧥 早上會冷，小公主穿外套。'},
-    {t:'09:00', title:'開園入園 → 立刻買冰雪奇緣 DPA', en:'Disney Premier Access: Anna and Elsa\'s Frozen Journey', must:true, desc:'進閘門站到旁邊就買，<b>9:30 前付款完成</b>。選最早的時段。每人 ¥2,500。', tags:[['walk','🎟️ 入園']]},
-    {t:'09:05', title:'接著買夜間秀「堅信！」DPA', en:'Disney Premier Access: Believe! Sea of Dreams', must:true, desc:'表演和設施分開算，不用等 60 分鐘。平日約 11:00 賣完。每人 ¥2,500。', tags:[['walk','🌌 DPA']]},
-    {t:'09:15', title:'玩具總動員瘋狂遊戲屋', en:'Toy Story Mania!・American Waterfront', desc:'美國海濱，不限身高。用一般排隊。', tags:[['walk','🎯 設施']]},
-    {t:'10:05', title:'買第二張設施 DPA：翱翔', en:'Soaring: Fantastic Flight', desc:'第一張買完 60 分鐘後，或冰雪奇緣時段開始就能買。<b>102 cm 以上</b>；不到就改買樂佩。', tags:[['walk','🦅 DPA']]},
-    {t:'DPA 時段', title:'安娜與艾莎的冰雪之旅', en:'Anna and Elsa\'s Frozen Journey・Fantasy Springs', must:true, desc:'夢幻泉鄉・冰雪王國。從正門走過去約 20 分，提早出發。', tags:[['walk','❄️ 設施']]},
-    {t:'11:30', title:'買第三張 DPA：小飛俠或樂佩', en:'Disney Premier Access: Peter Pan\'s Never Land Adventure / Rapunzel\'s Lantern Festival', desc:'第二張買完 60 分鐘後（或第二張時段開始）就能買。小公主 <b>102 cm 以上買小飛俠</b>（排隊最久），不到就買<b>樂佩</b>。時段選 <b>15:30 前後</b>，平日約 19:40 才賣完。每人 ¥2,000。', tags:[['walk','🧚 DPA']]},
-    {t:'12:00', title:'午餐：賽巴斯丁加力騷廚房', en:'Sebastian\'s Calypso Kitchen・Mermaid Lagoon', desc:'美人魚礁湖裡，全室內、座位多。', tags:[['walk','🍽️ 午餐']]},
-    {t:'13:00', title:'美人魚礁湖', en:'Mermaid Lagoon: Jumpin\' Jellyfish / The Whirlpool / Blowfish Balloon Race / Ariel\'s Playground', desc:'跳躍水母、旋轉海藻杯、河豚氣球、艾莉兒遊樂場，都不限身高。', tags:[['walk','🧜‍♀️ 設施']]},
-    {t:'14:00', title:'25 週年「閃耀歡騰慶典」', en:'Sparkling Jubilee Celebration・Mediterranean Harbor', must:true, desc:'地中海港灣水上表演約 15 分。當天場次 11:30、14:00、16:00。', tags:[['walk','🎉 表演']]},
-    {t:'15:30', title:'夢幻泉鄉：樂佩公主天燈盛會、小飛俠夢幻島歷險記', en:'Rapunzel\'s Lantern Festival / Peter Pan\'s Never Land Adventure', must:true, desc:'有 DPA 的照時段走專用入口，另一個現場排隊（樂佩通常比較快）。樂佩不限身高；小飛俠要 102 cm，有暗場和打鬥場面。玩完接 16:40 左右日落，冰雪王國城堡點燈很漂亮。', tags:[['walk','🎈 設施']]},
-    {t:'17:30', title:'晚餐：艾倫戴爾皇家宴會廳', en:'Royal Banquet of Arendelle', desc:'城堡裡用餐，可試 Priority Seating 或當天 App。日落約 16:40，城堡點燈很美。', tags:[['walk','🍽️ 晚餐']]},
-    
-    {t:'19:15', title:'堅信！～夢想之海～ 港灣表演', en:'Believe! Sea of Dreams・Mediterranean Harbor', must:true, desc:'地中海港灣約 30 分，照 DPA 指定的座位入座。', tags:[['walk','🌌 夜間秀']]},
+    {t:'09:00', title:'入園 → 立刻買冰雪奇緣＋夜間秀 DPA', en:'Disney Premier Access: Anna and Elsa\'s Frozen Journey / Believe! Sea of Dreams', must:true, desc:'進閘門站到旁邊就買，<b>9:30 前付款完成</b>。冰雪奇緣選<b>最早時段</b>；接著馬上買「堅信！」19:15（表演和設施分開算）。各 ¥2,500／人。', tags:[['walk','🎟️ DPA']], tip:'👩 另一位大人用自己的手機：① 抽「夢想起飛」12:25 場（免費 Entry Request）② 拿下午夢幻泉鄉禮品店的 SP。'},
+    {t:'09:05', title:'（身高 100 cm 以下）正門租推車', en:'Stroller Rentals・Park Entrance', desc:'¥1,000，數量有限先到先借。超過 100 cm 或 15 kg 就不能租。', tags:[['walk','👶 推車']]},
+    {t:'09:15', title:'玩具總動員瘋狂遊戲屋', en:'Toy Story Mania!・American Waterfront', desc:'美國海濱，不限身高，現場排隊（筆記估約 30 分）。超過 60 分可改買 DPA（平日約 14:15 賣完）。', tags:[['walk','🎯 設施']]},
+    {t:'10:05', title:'買第二張 DPA：翱翔（選 14:30 前後）', en:'Disney Premier Access: Soaring: Fantastic Flight', desc:'第一張買完 60 分後、或冰雪奇緣時段開始就能買。<b>102 cm 以上</b>；不到就改買玩具總動員或樂佩。每人 ¥2,500。', tags:[['walk','🦅 DPA']]},
+    {t:'DPA 時段', title:'安娜與艾莎的冰雪之旅', en:'Anna and Elsa\'s Frozen Journey・Fantasy Springs', must:true, desc:'夢幻泉鄉・冰雪王國。從美國海濱走過去約 20 分，提早出發。', tags:[['walk','❄️ 設施']]},
+    {t:'11:30', title:'買第三張 DPA：小飛俠（選 15:30 前後）', en:'Disney Premier Access: Peter Pan\'s Never Land Adventure', desc:'<b>102 cm 以上買小飛俠</b>（排隊最久）；不到就買樂佩。平日約 19:40 才賣完，每人 ¥2,000。', tags:[['walk','🧚 DPA']]},
+    {t:'11:45', title:'午餐：猶加敦基地營燒烤', en:'Yucatan Base Camp Grill・Lost River Delta', desc:'失落河三角洲，座位多、出餐快，有烤雞和米奇造型雞塊。', tags:[['walk','🍗 午餐']]},
+    {t:'12:25', title:'夢想起飛（室內表演）', en:'Dreams Take Flight・Lost River Delta (Hangar Stage)', must:true, desc:'就在猶加敦旁邊，約 25 分。座位用早上免費抽選（Entry Request）的結果；沒抽中也可以看 13:50 場，但會趕 14:00 的慶典。', tags:[['walk','🎬 表演']]},
+    {t:'13:00', title:'美人魚礁湖＋小胖的飛魚雲霄飛車', en:'Mermaid Lagoon・Flounder\'s Flying Fish Coaster', desc:'飛魚雲霄飛車在礁湖外面，<b>90 cm 以上</b>，現場排隊。室內有跳躍水母、旋轉海藻杯、艾莉兒遊樂場，都不限身高。', tags:[['walk','🧜‍♀️ 設施']]},
+    {t:'14:00', title:'25 週年「閃耀歡騰慶典」', en:'Sparkling Jubilee Celebration・Mediterranean Harbor', must:true, desc:'地中海港灣水上表演約 15 分。從美人魚礁湖走過去約 10–15 分，13:40 出發。', tags:[['walk','🎉 表演']]},
+    {t:'14:30', title:'翱翔：夢幻奇航（DPA）', en:'Soaring: Fantastic Flight・Mediterranean Harbor', desc:'就在地中海港灣，看完慶典直接去。東京限定的飛行體驗。', tags:[['walk','🦅 設施']]},
+    {t:'15:30', title:'夢幻泉鄉：小飛俠（DPA）＋樂佩（現場排隊）', en:'Peter Pan\'s Never Land Adventure / Rapunzel\'s Lantern Festival', must:true, desc:'小飛俠照 DPA 時段走專用入口；樂佩排隊通常快、不限身高。順便用 SP 逛夢幻泉鄉禮品店。', tags:[['walk','🎈 設施']]},
+    {t:'16:40', title:'日落・冰雪王國城堡點燈', en:'Frozen Kingdom', desc:'艾倫戴爾城堡點燈很漂亮，拍照時間。', tags:[['walk','📸 拍照']]},
+    {t:'17:30', title:'晚餐：艾倫戴爾皇家宴會廳', en:'Royal Banquet of Arendelle', desc:'城堡裡用餐，可試 Priority Seating 或當天 App。', tags:[['walk','🍽️ 晚餐']]},
+    {t:'18:45', title:'往地中海港灣、找 DPA 座位', desc:'從夢幻泉鄉走到地中海港灣約 15–20 分。「舞動全球！」18:40 場會撞到夜間秀，這天先跳過。', tags:[['walk','🚶 移動']]},
+    {t:'19:15', title:'堅信！～夢想之海～ 港灣表演', en:'Believe! Sea of Dreams・Mediterranean Harbor', must:true, desc:'只有這一場，約 30 分，照 DPA 指定的座位入座。', tags:[['walk','🌌 夜間秀']]},
     {t:'20:15', title:'飯店牆面投影＋20:30 花火', en:'Sparkling Jubilee Night・Sky Full of Colors', desc:'米拉柯斯塔飯店牆面投影 20:15、20:40、20:55；花火 20:30，約 5 分鐘。', tags:[['walk','🎆 花火']]},
-    {t:'21:00', title:'閉園 → 海洋巴士總站 7 號 → 飯店', en:'Tokyo DisneySea Bus Terminal', desc:'看完花火已經在地中海港灣，離正門很近，走出去右轉就是巴士總站。<b>11/4 電動船地中海港灣站休止</b>，不能坐船。', tags:[['walk','🚶 步行'],['bus','🚌 接駁巴士']], warn:'飯店接駁車只能在巴士總站搭，單軌電車站不行。最後一班時間先問櫃台。'}
+    {t:'21:00', title:'閉園 → 海洋巴士總站 7 號 → 飯店', en:'Tokyo DisneySea Bus Terminal', desc:'看完花火已經在地中海港灣，走出正門右轉就是巴士總站。<b>11/4 電動船地中海港灣站休止</b>。', tags:[['walk','🚶 步行'],['bus','🚌 接駁巴士']], warn:'飯店接駁車只能在巴士總站搭，單軌電車站不行。最後一班時間先問櫃台。'}
    ]},
   {id:'d3', md:'11/5', dow:'四', title:'Outlet 血拼・換宿大塚', ill:'ill-d3', bg:'bg-yama', effort:3,
    meta:'行李帶去 Outlet 寄放，逛完直接去大塚', stay:'大塚飯店（第 1 晚）',
@@ -969,6 +1036,19 @@ function renderDay(id, animate){
 
 /* ===================== NAV HEIGHT ===================== */
 (function(){const nav=$('.topnav');const set=()=>document.documentElement.style.setProperty('--nav-h',nav.offsetHeight+'px');set();window.addEventListener('resize',set);window.addEventListener('load',set);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(set);})();
+
+/* ===================== OUR PLAN TIMELINE ===================== */
+(function(){
+  const d = DAYS.find(x=>x.id==='d2');
+  $('#mine-tl').innerHTML = d.items.map(it=>`
+    <div class="ti ${it.must?'must':''}"><div class="box">
+      <div class="top"><span class="time">${it.t}</span>${(it.tags||[]).map(([k,l])=>`<span class="tag t-${k}">${l}</span>`).join('')}${it.must?'<span class="must-badge">★ 必去</span>':''}</div>
+      <div class="name">${it.title}</div>${it.en?`<div class="en">${it.en}</div>`:''}
+      ${it.desc?`<div class="desc">${it.desc}</div>`:''}
+      ${it.warn?`<div class="warn">⚠️ ${it.warn}</div>`:''}
+      ${it.tip?`<div class="tip">${it.tip}</div>`:''}
+    </div></div>`).join('');
+})();
 
 /* ===================== TABS / ROUTING ===================== */
 const TABS = $$('.tab').map(b=>b.dataset.tab);
@@ -1140,7 +1220,7 @@ document.addEventListener('keydown', e=>{
 })();
 
 /* ===================== FAMILY LOCK ===================== */
-const ENC = {"salt": "hZNGmYo9nnj8ChLl5HpRQA==", "iv": "2B4PBd2ofXN//14V", "data": "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", "iter": 250000};
+const ENC = {"salt": "tKdyEyr/S3OutgCJfoKOlg==", "iv": "lsLX1HO54fYqJHBD", "data": "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", "iter": 250000};
 (function(){
   const PKEY = 'tdr2026-pw';
   const lockHTML = name => `
